@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.sonarqube.l10n.zhtw</groupId>
+  <artifactId>sonar-l10n-zhtw-plugin</artifactId>
+  <packaging>sonar-plugin</packaging>
+  <version>10.7-SNAPSHOT</version>
+
+  <name>L10n :: Traditional Chinese Pack</name>
+  <url>https://github.com/kliedo/sonar-l10n-zhtw</url>
+  <inceptionYear>2024</inceptionYear>
+  <description>Language Pack for Traditional Chinese</description>
+
+  <organization>
+    <name>CHIN-CHIEH, LIN</name>
+    <url>https://github.com/kliedo</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>GNU LGPL 3</name>
+      <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/kliedo/sonar-l10n-zhtw.git</connection>
+    <developerConnection>scm:git:https://github.com/kliedo/sonar-l10n-zhtw.git</developerConnection>
+    <url>https://github.com/kliedo/sonar-l10n-zhtw</url>
+    <tag>sonar-l10n-zhtw-plugin-10.6</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/kliedo/sonar-l10n-zhtw/issues</url>
+  </issueManagement>
+
+  <properties>
+    <sonar.pluginClass>org.sonar.plugins.l10n.TraditionalChinesePackPlugin</sonar.pluginClass>
+    <sonar.version>10.6.0.92116</sonar.version>
+    <sonar-plugin-api.version>9.8.0.203</sonar-plugin-api.version>
+    <junit.version>4.13.2</junit.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <sonar.projectKey>kliedo_sonar-l10n-zh</sonar.projectKey>
+    <sonar.organization>chin-chieh-lin</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.api.plugin</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${sonar-plugin-api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-testing-harness</artifactId>
+      <version>${sonar.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-core</artifactId>
+      <version>${sonar.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <developers>
+    <developer>
+      <id>kliedo</id>
+      <name>CHIN-CHIEH,LIN</name>
+      <organization>chin-chieh-lin</organization>
+      <organizationUrl>https://github.com/kliedo</organizationUrl>
+    </developer>
+  </developers>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+        <artifactId>sonar-packaging-maven-plugin</artifactId>
+        <version>1.18.0.372</version>
+        <extensions>true</extensions>
+        <configuration>
+          <pluginName>Traditional Chinese Pack</pluginName>
+          <pluginDescription>Language pack for Traditional Chinese</pluginDescription>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native2ascii-maven-plugin</artifactId>
+        <version>1.0-beta-1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>native2ascii</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.12</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Nexus Release Repository</name>
+      <url>file:./target/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Nexus Snapshot Repository</name>
+      <url>file:./target/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>coverage</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
